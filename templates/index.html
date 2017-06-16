@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<img src="https://www.flixbus.com/sites/default/files/flixbus-logo.jpg" alt="Smiley face">
+
+<div style="margin-left:30px">
+<h1>
+{% if name %}
+	Hello, {{name|capitalize}}! 
+{% else %}
+	Hello, weirdo!
+{% endif %}	
+		</h1>
+
+	
+{{ wtf.quick_form(form) }}	
+</div>
+
+<h1 style="color: #73D300; font-size: 120px">Hello World </h1>
+<h1>Hello Flixbus! </h1> <p><pre> Your browser is {{user_agent}} </pre></p>
+{% import 'macros.html' as macros %}
+<ul>
+	{% for comment in comments %}
+		{{macros.render_comment(comment)}}
+	{% endfor %}
+</ul>
+
+<p style="margin-left:20px"> The local data and time is {{moment(current_time).format('LLL')}}.</p>
+<p style="margin-left:20px"> That was {{ moment(current_time).fromNow(refresh=True)}} </p>
+{% endblock %}
